@@ -24,7 +24,7 @@ public class Basic extends BaseSeimiCrawler {
     public void start(Response response) {
         JXDocument doc = response.document();
         try {
-            List<Object> urls = doc.sel("//a[@class='titlelnk']/@href");
+            List<Object> urls = doc.sel("//a[@class='post-item-title']/@href");
             logger.info("{}", urls.size());
             for (Object s:urls){
                 push(Request.build(s.toString(),Basic::getTitle));
@@ -38,7 +38,8 @@ public class Basic extends BaseSeimiCrawler {
     public void getTitle(Response response){
         JXDocument doc = response.document();
         try {
-            logger.info("url:{} {}", response.getUrl(), doc.sel("//h1[@class='postTitle']/a/text()|//a[@id='cb_post_title_url']/text()"));
+            //logger.info("url:{} {}", response.getUrl(), doc.sel("//h1[@class='postTitle']/a/text()|//a[@id='cb_post_title_url']/text()"));
+            logger.info("url:{} {}", response.getUrl(), doc.sel("//a[@class='postTitle2 vertical-middle']/span/text()|//a[@id='cb_post_title_url']/text()"));
             //do something
         } catch (Exception e) {
             e.printStackTrace();
