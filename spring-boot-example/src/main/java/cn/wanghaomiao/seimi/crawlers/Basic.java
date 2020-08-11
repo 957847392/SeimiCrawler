@@ -39,7 +39,8 @@ public class Basic extends BaseSeimiCrawler {
         JXDocument doc = response.document();
         try {
             //logger.info("url:{} {}", response.getUrl(), doc.sel("//h1[@class='postTitle']/a/text()|//a[@id='cb_post_title_url']/text()"));
-            logger.info("url:{} {}", response.getUrl(), doc.sel("//a[@class='postTitle2 vertical-middle']/span/text()|//a[@id='cb_post_title_url']/text()"));
+            logger.info("url:{} 获取到文章的标题为:{}", response.getUrl(), doc.sel("//a[@class='postTitle2 vertical-middle']/span/text()"));
+            logger.info("url:{} 获取到文章的内容为:{}", response.getUrl(), doc.sel("//div[@class='blogpost-body cnblogs-markdown']/p/text()"));
             //do something
         } catch (Exception e) {
             e.printStackTrace();
